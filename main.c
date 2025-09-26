@@ -1,6 +1,5 @@
 #include <stdio.h>
 
-
 int main(void)
 {
     puts("\t\t\tWelcome to the Student Management System");
@@ -12,8 +11,7 @@ int main(void)
     unsigned int englishGrade = 0;
 
     printf("%s", "Enter your ID: ");
-    scanf("%d"
-    , &studentID);
+    scanf("%d", &studentID);
 
     printf("%s", "Enter the Maths grade: ");
     scanf("%d", &mathsGrade);
@@ -42,7 +40,64 @@ int main(void)
         return 1;
     }
 
-    printf("Student ID: %d\nMaths: %d\tScience: %d\tEnglish: %d\t\n", studentID, mathsGrade, scienceGrade, englishGrade);
 
+    printf("Student ID: %d\nMaths: %d\tScience: %d\tEnglish: %d\t\n", studentID, mathsGrade, scienceGrade, englishGrade);
+    
+
+    int totalGrades = mathsGrade + scienceGrade + englishGrade;
+    double average = (double) totalGrades / 3;
+
+
+    int highestGrade = mathsGrade;
+    
+    if(highestGrade < scienceGrade)
+    {
+        highestGrade = scienceGrade;
+    }
+    
+    if(highestGrade < englishGrade)
+    {
+        highestGrade = englishGrade;
+    }
+
+    
+    int lowestGrade = mathsGrade;
+
+    if(lowestGrade > scienceGrade)
+    {   
+        lowestGrade = scienceGrade;
+    }
+    
+    if(lowestGrade > englishGrade)
+    {
+        lowestGrade = englishGrade;
+    }
+
+
+    printf("Highest: %d\t Lowest: %d\n", highestGrade, lowestGrade);
+
+
+    printf("%s", "Performance: ");
+    if(average >= 90)
+    {
+        printf("%s", "Excellent!");
+    }
+    else if(average >= 80)
+    {
+        printf("%s", "Very Good");
+    }
+    else if(average >= 70)
+    {
+        printf("%s", "Good");
+    }
+    else if(average >= 60)
+    {
+        printf("%s", "Pass");
+    }
+    else if(average < 60)
+    {
+        printf("%s", "Fail!");
+    }
+    
     return 0;
 }
