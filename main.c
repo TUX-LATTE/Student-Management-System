@@ -5,7 +5,7 @@ int main(void)
 {
     puts("\t\t\tWelcome to the Student Management System");
 
-    int studentID = 0;
+    int studentID = 0;  //There is no validation for student ID yet
 
     unsigned short mathsGrade = 0; 
     unsigned short scienceGrade = 0; 
@@ -52,13 +52,12 @@ int main(void)
         }
     
     
-        printf("Student ID: %d\nMaths: %hd\tScience: %hd\tEnglish: %hd\t\n", studentID, mathsGrade, scienceGrade, englishGrade);
         
-    
+        
         totalGrades = mathsGrade + scienceGrade + englishGrade;
         average = (float) totalGrades / 3;
-    
-    
+        
+        
         //--------------------------------------------My logic-----------------------------------------------//
         // highestGrade = mathsGrade;
         
@@ -66,25 +65,25 @@ int main(void)
         // {
         //     highestGrade = scienceGrade;
         // }
-        
+            
         // if(highestGrade < englishGrade)
         // {
         //     highestGrade = englishGrade;
         // }
-    
-        
+                
+                
         // lowestGrade = mathsGrade;
-    
+                
         // if(lowestGrade > scienceGrade)
         // {   
         //     lowestGrade = scienceGrade;
         // }
-        
+                    
         // if(lowestGrade > englishGrade)
         // {
         //     lowestGrade = englishGrade;
         // }
-
+                        
         //-------------------------------------------Chatgpt Logic-----------------------------------------------//
         if(mathsGrade > scienceGrade)
         {
@@ -96,15 +95,18 @@ int main(void)
             highestGrade = scienceGrade;
             lowestGrade = mathsGrade;
         }
-
+                        
         if(highestGrade < englishGrade)
         {
             highestGrade = englishGrade;
         }
 
+
+        printf("Student ID: %d\nMaths: %hd\tScience: %hd\tEnglish: %hd\t\n", studentID, mathsGrade, scienceGrade, englishGrade);
         printf("Highest: %d\t Lowest: %d\n", highestGrade, lowestGrade);
+        printf("Average: %.2f\n", average);
     
-    
+
         printf("%s", "Performance: ");
         if(average >= 90)
         {
@@ -134,6 +136,19 @@ int main(void)
         scanf("%d", &temp);
 
         runProgram = (temp != 0);
+
+        /* -------------------------------------------LOGIC USED BEFORE!-----------------------------------------
+           
+            int runProgram = 1;
+           
+            printf("\nWant to continue(Any Key: Yes/0: No)?: ");
+            scanf("%d", &runProgram);
+
+            And why not this: 
+               Software Engineering Observation 4.4:
+                   First, make your code simple, clean and correct; then make it fast and small, but only if necessary.
+        */
+
     }
     return 0;
 }
