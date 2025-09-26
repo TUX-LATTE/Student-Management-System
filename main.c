@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdbool.h>
 
 int main(void)
 {
@@ -6,20 +7,25 @@ int main(void)
 
     int studentID = 0;
 
-    unsigned int mathsGrade = 0; 
-    unsigned int scienceGrade = 0; 
-    unsigned int englishGrade = 0;
+    unsigned short mathsGrade = 0; 
+    unsigned short scienceGrade = 0; 
+    unsigned short englishGrade = 0;
 
-    int cont = 1;
+    short totalGrades = 0;
+    float average = 0;
+
+    unsigned short highestGrade = 0, lowestGrade = 0;
+
+    bool runProgram = true;
 
 
-    while(cont)
+    while(runProgram)
     {
         printf("%s", "Enter your ID: ");
         scanf("%d", &studentID);
     
         printf("%s", "Enter the Maths grade: ");
-        scanf("%d", &mathsGrade);
+        scanf("%hd", &mathsGrade);
     
         if(mathsGrade < 0 || mathsGrade > 100)
         {
@@ -28,7 +34,7 @@ int main(void)
         }
         
         printf("%s", "Enter the Science grade: ");
-        scanf("%d", &scienceGrade);
+        scanf("%hd", &scienceGrade);
     
         if(scienceGrade < 0 || scienceGrade > 100)
         {
@@ -37,7 +43,7 @@ int main(void)
         }
     
         printf("%s", "Enter the English grade: ");
-        scanf("%d", &englishGrade);
+        scanf("%hd", &englishGrade);
     
         if(englishGrade < 0 || englishGrade > 100)
         {
@@ -46,39 +52,56 @@ int main(void)
         }
     
     
-        printf("Student ID: %d\nMaths: %d\tScience: %d\tEnglish: %d\t\n", studentID, mathsGrade, scienceGrade, englishGrade);
+        printf("Student ID: %d\nMaths: %hd\tScience: %hd\tEnglish: %hd\t\n", studentID, mathsGrade, scienceGrade, englishGrade);
         
     
-        int totalGrades = mathsGrade + scienceGrade + englishGrade;
-        double average = (double) totalGrades / 3;
+        totalGrades = mathsGrade + scienceGrade + englishGrade;
+        average = (float) totalGrades / 3;
     
     
-        int highestGrade = mathsGrade;
+        //--------------------------------------------My logic-----------------------------------------------//
+        // highestGrade = mathsGrade;
         
-        if(highestGrade < scienceGrade)
+        // if(highestGrade < scienceGrade)
+        // {
+        //     highestGrade = scienceGrade;
+        // }
+        
+        // if(highestGrade < englishGrade)
+        // {
+        //     highestGrade = englishGrade;
+        // }
+    
+        
+        // lowestGrade = mathsGrade;
+    
+        // if(lowestGrade > scienceGrade)
+        // {   
+        //     lowestGrade = scienceGrade;
+        // }
+        
+        // if(lowestGrade > englishGrade)
+        // {
+        //     lowestGrade = englishGrade;
+        // }
+
+        //-------------------------------------------Chatgpt Logic-----------------------------------------------//
+        if(mathsGrade > scienceGrade)
+        {
+            highestGrade = mathsGrade;
+            lowestGrade = scienceGrade;
+        }
+        else
         {
             highestGrade = scienceGrade;
+            lowestGrade = mathsGrade;
         }
-        
+
         if(highestGrade < englishGrade)
         {
             highestGrade = englishGrade;
         }
-    
-        
-        int lowestGrade = mathsGrade;
-    
-        if(lowestGrade > scienceGrade)
-        {   
-            lowestGrade = scienceGrade;
-        }
-        
-        if(lowestGrade > englishGrade)
-        {
-            lowestGrade = englishGrade;
-        }
-    
-    
+
         printf("Highest: %d\t Lowest: %d\n", highestGrade, lowestGrade);
     
     
@@ -106,7 +129,11 @@ int main(void)
 
         
         printf("\nWant to continue(Any Key: Yes/0: No)?: ");
-        scanf("%d", &cont);
+        
+        int temp = 0;
+        scanf("%d", &temp);
+
+        runProgram = (temp != 0);
     }
     return 0;
 }
